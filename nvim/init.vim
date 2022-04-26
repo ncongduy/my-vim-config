@@ -1,4 +1,5 @@
-set number " setup number on the left side set autoindent " setup indentation
+set number " setup number on the left side 
+set autoindent " setup indentation
 set smartindent 
 set tabstop=4
 set shiftwidth=4
@@ -46,6 +47,11 @@ call plug#begin()
 
 call plug#end()
 
+" {{ change status bar }}
+let g:airline#extensions#tabline#enabled = 1 				" Enable Tab bar
+let g:airline#extensions#tabline#left_sep = ' ' 			" Enable Tab seperator 
+let g:airline#extensions#tabline#left_alt_sep = '|' 		" Enable Tab seperator
+
 " {{ config nerdtree }}
 nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
@@ -81,7 +87,7 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 let g:nerdtree_sync_cursorline = 1
 
 " {{ config fuzzy finder }}
-map <C-F> :Files<CR> 
+map <C-G> :Files<CR> 
 map <C-H> :History<CR>
 
 " {{ config autocomplete }}
