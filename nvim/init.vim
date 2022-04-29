@@ -7,8 +7,9 @@ set smarttab
 set softtabstop=4
 set mouse=a " setup using mouse on Vim
 set ignorecase " Ignore sensitive case
+set nocompatible " setup syntax highlight
 syntax on
-colorscheme sublimemonokai " Setup theme
+" colorscheme sublimemonokai " Setup theme
 
 " {{ install plugin }}
 call plug#begin()
@@ -22,11 +23,23 @@ call plug#begin()
 	Plug 'Xuyuanp/nerdtree-git-plugin' " git status
 	Plug 'ryanoasis/vim-devicons' " icon
 	Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+	
+	" {{ syntax plugin for 100 languages }}
+	Plug 'sheerun/vim-polyglot'
+	Plug 'pangloss/vim-javascript'
+
+	" {{ install ESlint }}
+	Plug 'dense-analysis/ale'
+
+	" {{ install Prettier }}
+	Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install --frozen-lockfile --production',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
 
 	" {{ command line fuzzy finder - help to search file }}
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-	Plug 'junegunn/fzf.vim'
-	
+	Plug 'junegunn/fzf.vim' 
+
 	" {{ autocomplete code }}
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 	Plug 'jiangmiao/auto-pairs' 					" Parenthesis auto 
@@ -36,19 +49,13 @@ call plug#begin()
 	Plug 'liuchengxu/vista.vim' 					" Function tag bar 
 	Plug 'alvan/vim-closetag' 						" Auto close HTML/XML tag
 
-	" Code syntax highlight
-	Plug 'yuezk/vim-js' 							" Javascript
-	Plug 'MaxMEllon/vim-jsx-pretty' 				" JSX/React
-	Plug 'jackguo380/vim-lsp-cxx-highlight'			" C++ syntax
-	Plug 'uiiaoo/java-syntax.vim' 					" Java
-
 	" Source code version control 
 	Plug 'tpope/vim-fugitive' 						" Git
 
 call plug#end()
 
 " {{ change status bar }}
-let g:airline#extensions#tabline#enabled = 1 				" Enable Tab bar
+" let g:airline#extensions#tabline#enabled = 1 				" Enable Tab bar
 let g:airline#extensions#tabline#left_sep = ' ' 			" Enable Tab seperator 
 let g:airline#extensions#tabline#left_alt_sep = '|' 		" Enable Tab seperator
 
@@ -57,6 +64,13 @@ nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
+
+" {{ config ESlint }}
+let g:ale_sign_error = '❌'
+let g:ale_sign_warning = '⚠️'
+
+" {{ config Prettier }}
+autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx,*.css,*.scss,*.json,*.graphql,*.md,*.yaml,*.yml,*.html Prettier
 
 " {{ config icon }}
 set encoding=UTF-8
@@ -87,8 +101,9 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 let g:nerdtree_sync_cursorline = 1
 
 " {{ config fuzzy finder }}
-map <C-G> :Files<CR> 
+map <C-P> :Files<CR> 
 map <C-H> :History<CR>
+map <C-U> :Buffers<CR>
 
 " {{ config autocomplete }}
 
