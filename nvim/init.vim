@@ -78,8 +78,8 @@ set encoding=UTF-8
 " {{ config git plugin }}
 "
 " Change arrow to expand/collapse tree
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
+let g:NERDTreeDirArrowExpandable = '+'
+let g:NERDTreeDirArrowCollapsible = '~'
 
 "let NERDTreeMapOpenInTab='<ENTER>'
 
