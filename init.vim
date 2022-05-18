@@ -8,8 +8,8 @@ set softtabstop=4
 set mouse=a " setup using mouse on Vim
 set ignorecase " Ignore sensitive case
 set nocompatible " setup syntax highlight
+set background=light
 syntax on
-" colorscheme sublimemonokai " Setup theme
 
 " {{ install plugin }}
 call plug#begin()
@@ -30,7 +30,7 @@ call plug#begin()
 
 	" {{ install ESlint }}
 	Plug 'dense-analysis/ale'
-
+	
 	" {{ install Prettier }}
 	Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install --frozen-lockfile --production',
@@ -58,6 +58,7 @@ call plug#end()
 " let g:airline#extensions#tabline#enabled = 1 				" Enable Tab bar
 let g:airline#extensions#tabline#left_sep = ' ' 			" Enable Tab seperator 
 let g:airline#extensions#tabline#left_alt_sep = '|' 		" Enable Tab seperator
+let g:airline_theme='angr'								" Use theme for status bar
 
 " {{ config nerdtree }}
 nnoremap <leader>n :NERDTreeFocus<CR>
@@ -70,7 +71,7 @@ let g:ale_sign_error = '❌'
 let g:ale_sign_warning = '⚠️'
 
 " {{ config Prettier }}
-autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx,*.css,*.scss,*.json,*.graphql,*.md,*.yaml,*.yml,*.html Prettier
+autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx,*.css,*.scss,*.json,*.graphql,*.md,*.yaml,*.yml,*.html Prettier  " Auto format 
 
 " {{ config icon }}
 set encoding=UTF-8
@@ -119,7 +120,7 @@ set nobackup
 set nowritebackup
 
 " Give more space for displaying messages.
-set cmdheight=2
+set cmdheight=1
 
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
