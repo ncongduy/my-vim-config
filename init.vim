@@ -26,7 +26,6 @@ call plug#begin()
 	
 	" {{ syntax plugin for 100 languages }}
 	Plug 'sheerun/vim-polyglot'
-	Plug 'pangloss/vim-javascript'
 
 	" {{ install ESlint }}
 	Plug 'dense-analysis/ale'
@@ -41,22 +40,15 @@ call plug#begin()
 	Plug 'junegunn/fzf.vim' 
 
 	Plug 'https://github.com/ap/vim-css-color' " CSS Color Preview
-	Plug 'https://github.com/tc50cal/vim-terminal' " Vim Terminal
-	Plug 'https://github.com/preservim/tagbar' " Tagbar for code navigation
-	Plug 'https://github.com/terryma/vim-multiple-cursors' " CTRL + N for multiple cursors
 	Plug 'https://github.com/tpope/vim-commentary' " For Commenting gcc & gc
+	Plug 'tpope/vim-fugitive' 						" Git
 
 	" {{ autocomplete code }}
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 	Plug 'jiangmiao/auto-pairs' 					" Parenthesis auto 
-	Plug 'alvan/vim-closetag'
 	Plug 'mattn/emmet-vim' 
-	" Plug 'preservim/nerdcommenter' 					" Comment code 
-	" Plug 'liuchengxu/vista.vim' 					" Function tag bar 
 	Plug 'alvan/vim-closetag' 						" Auto close HTML/XML tag
-
-	" Source code version control 
-	Plug 'tpope/vim-fugitive' 						" Git
+	" Plug 'liuchengxu/vista.vim' 					" Function tag bar 
 
 call plug#end()
 
@@ -64,15 +56,15 @@ call plug#end()
 let g:airline#extensions#tabline#enabled = 1 				" Enable Tab bar
 let g:airline#extensions#tabline#left_sep = ' ' 			" Enable Tab seperator 
 let g:airline#extensions#tabline#left_alt_sep = '|' 		" Enable Tab seperator
-"let g:airline_theme='angr'								    " Use theme for status bar
 
 " {{ config nerdtree }}
 nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
-nnoremap <C-l> :call CocActionAsync('jumpDefinition')<CR>
 
-nmap <F8> :TagbarToggle<CR>
+" Change arrow to expand/collapse tree
+let g:NERDTreeDirArrowExpandable = '+'
+let g:NERDTreeDirArrowCollapsible = '~'
 
 " {{ config ESlint }}
 let g:ale_sign_error = '❌'
@@ -83,14 +75,6 @@ autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx,*.css,*.scss,*.json,*.graphql,*.md,*.y
 
 " {{ config icon }}
 set encoding=UTF-8
-
-" {{ config git plugin }}
-"
-" Change arrow to expand/collapse tree
-let g:NERDTreeDirArrowExpandable = '+'
-let g:NERDTreeDirArrowCollapsible = '~'
-
-"let NERDTreeMapOpenInTab='<ENTER>'
 
 " Git status icon
 let g:NERDTreeGitStatusIndicatorMapCustom = {
@@ -113,3 +97,9 @@ let g:nerdtree_sync_cursorline = 1
 map <C-P> :Files<CR> 
 " map <C-H> :History<CR>
 " map <C-U> :Buffers<CR>
+
+" {{ config Emmet }}
+let g:user_emmet_mode='n'    "only enable normal mode functions.
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
+let g:user_emmet_leader_key='<C-Y>'
