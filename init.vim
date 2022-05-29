@@ -7,8 +7,8 @@ set smarttab
 set softtabstop=4
 set mouse=a " setup using mouse on Vim
 set nocompatible " setup syntax highlight
-set background=dark
 syntax on
+set background=dark
 " set ignorecase " Ignore sensitive case
 
 " {{ install plugin }}
@@ -39,9 +39,11 @@ call plug#begin()
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 	Plug 'junegunn/fzf.vim' 
 
-	Plug 'https://github.com/ap/vim-css-color' " CSS Color Preview
-	Plug 'https://github.com/tpope/vim-commentary' " For Commenting gcc & gc
-	Plug 'tpope/vim-fugitive' 						" Git
+	Plug 'https://github.com/ap/vim-css-color'				" CSS Color Preview
+	Plug 'https://github.com/tpope/vim-commentary'			" For Commenting gcc & gc
+	Plug 'tpope/vim-fugitive'								" Git
+	Plug 'https://github.com/preservim/tagbar'				" Tagbar
+	Plug 'https://github.com/rafi/awesome-vim-colorschemes' " Retro Scheme
 
 	" {{ autocomplete code }}
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -52,6 +54,8 @@ call plug#begin()
 
 call plug#end()
 
+" colorscheme github
+
 " {{ change status bar }}
 let g:airline#extensions#tabline#enabled = 1 				" Enable Tab bar
 let g:airline#extensions#tabline#left_sep = ' ' 			" Enable Tab seperator 
@@ -61,6 +65,9 @@ let g:airline#extensions#tabline#left_alt_sep = '|' 		" Enable Tab seperator
 nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
+
+" {{ config tagbar }}
+nmap <F8> :TagbarToggle<CR>
 
 " Change arrow to expand/collapse tree
 let g:NERDTreeDirArrowExpandable = '+'
