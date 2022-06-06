@@ -8,7 +8,7 @@ set softtabstop=4
 set mouse=a " setup using mouse on Vim
 set nocompatible " setup syntax highlight
 syntax on
-set background=dark
+set background=light
 " set ignorecase " Ignore sensitive case
 
 " {{ install plugin }}
@@ -43,7 +43,7 @@ call plug#begin()
 	Plug 'https://github.com/tpope/vim-commentary'			" For Commenting gcc & gc
 	Plug 'tpope/vim-fugitive'								" Git
 	Plug 'https://github.com/preservim/tagbar'				" Tagbar
-	Plug 'https://github.com/rafi/awesome-vim-colorschemes' " Retro Scheme
+	" Plug 'https://github.com/rafi/awesome-vim-colorschemes' " Retro Scheme
 
 	" {{ autocomplete code }}
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -60,6 +60,8 @@ call plug#end()
 let g:airline#extensions#tabline#enabled = 1 				" Enable Tab bar
 let g:airline#extensions#tabline#left_sep = ' ' 			" Enable Tab seperator 
 let g:airline#extensions#tabline#left_alt_sep = '|' 		" Enable Tab seperator
+
+let g:airline_theme='angr'
 
 " {{ config nerdtree }}
 nnoremap <leader>n :NERDTreeFocus<CR>
