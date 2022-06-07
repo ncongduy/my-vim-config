@@ -114,4 +114,8 @@ autocmd FileType html,css EmmetInstall
 let g:user_emmet_leader_key='<C-Y>'
 
 " {{ config auto complete }}
-nnoremap <C-d> :call CocActionAsync('jumpDefinition')<CR>
+" nnoremap <C-d> :call CocActionAsync('jumpDefinition')<CR>
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
