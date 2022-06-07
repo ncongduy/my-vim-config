@@ -9,3 +9,7 @@
 -   Open file `init.vim` via Neovim
 -   Run `:PlugInstall` to install plugin
 -   Run `:PlugClean` to delete plugin
+-	Run `:CocInstall coc-tssserver` to support typescript, javascript, tsx, jsx
+-	Run `:CocInstall coc-html` to support html
+-	Run `:CocInstall coc-css` to support css
+-	Run `:CocInstall coc-json` to support json
