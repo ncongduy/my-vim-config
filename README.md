@@ -13,3 +13,7 @@
 -	Run `:CocInstall coc-html` to support html
 -	Run `:CocInstall coc-css` to support css
 -	Run `:CocInstall coc-json` to support json
+-	Run `:CocInstall coc-java` to support java
+-	Run `:CocInstall coc-pyright` to support python
+-	Run `:CocInstall coc-yaml` to support yaml file
+-	Run `:CocInstall coc-docker` to support docker file
