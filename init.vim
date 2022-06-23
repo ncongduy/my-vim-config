@@ -33,7 +33,7 @@ call plug#begin()
 	" {{ install Prettier }}
 	Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install --frozen-lockfile --production',
-  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html', 'js', 'jsx', 'ts', 'tsx', 'java', 'py'] }
 
 	" {{ command line fuzzy finder - help to search file }}
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -114,6 +114,10 @@ autocmd FileType html,css EmmetInstall
 let g:user_emmet_leader_key='<C-Y>'
 
 " {{ config auto complete }}
+
+" check coc extensions - :CocList extensions
+" :CocInstall coc-html, coc-css, coc-tsserver, coc-yaml, coc-docker, coc-json, coc-java, coc-pyright
+
 " nnoremap <C-d> :call CocActionAsync('jumpDefinition')<CR>
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
