@@ -1,10 +1,10 @@
 set number " setup number on the left side 
 set autoindent " setup indentation
 set smartindent 
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set smarttab
-set softtabstop=4
+set softtabstop=2
 set mouse=a " setup using mouse on Vim
 set nocompatible " setup syntax highlight
 syntax on
