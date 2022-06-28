@@ -44,6 +44,7 @@ call plug#begin()
 	Plug 'tpope/vim-fugitive'								" Git
 	Plug 'https://github.com/preservim/tagbar'				" Tagbar
 	" Plug 'https://github.com/rafi/awesome-vim-colorschemes' " Retro Scheme
+	Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }		" mardown preview
 
 	" {{ autocomplete code }}
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
