@@ -58,9 +58,9 @@ call plug#end()
 " colorscheme github
 
 " {{ change status bar }}
-let g:airline#extensions#tabline#enabled = 1 				" Enable Tab bar
-let g:airline#extensions#tabline#left_sep = ' ' 			" Enable Tab seperator 
-let g:airline#extensions#tabline#left_alt_sep = '|' 		" Enable Tab seperator
+" let g:airline#extensions#tabline#enabled = 1 				" Enable Tab bar
+" let g:airline#extensions#tabline#left_sep = ' ' 			" Enable Tab seperator 
+" let g:airline#extensions#tabline#left_alt_sep = '|' 		" Enable Tab seperator
 
 let g:airline_theme='angr'
 
