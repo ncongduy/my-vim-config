@@ -52,6 +52,9 @@ call plug#begin()
 	Plug 'mattn/emmet-vim' 
 	Plug 'alvan/vim-closetag' 						" Auto close HTML/XML tag
 	" Plug 'liuchengxu/vista.vim' 					" Function tag bar 
+	"
+	" {{ terraform }}
+	Plug 'hashivim/vim-terraform'
 
 call plug#end()
 
