@@ -3,7 +3,7 @@
 ## How to install Neovim
 
 -   Install Neovim: `sudo apt install neovim`
--   Install vim-plug: `https://github.com/junegunn/vim-plug`
+-   Install vim-plug: https://github.com/junegunn/vim-plug
 -   Download file `init.vim` to local.
 -   Save file `init.vim` to `~/.config/nvim`
 -   Open file `init.vim` via Neovim
@@ -21,7 +21,7 @@
 ## How to install Vim
 
 -   Install Vim: `sudo apt install vim`
--   Install vim-plug: `https://github.com/junegunn/vim-plug`
+-   Install vim-plug: https://github.com/junegunn/vim-plug
 -   Download file `.vimrc` to home directory
 -   Open file `.vimrc` via vim
 -   Run `:PlugInstall` to install plugin
