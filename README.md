@@ -1,6 +1,6 @@
-# My Neovim
+# My Vim installation
 
-## How to run
+## How to install Neovim
 
 -   Install Neovim: `sudo apt install neovim`
 -   Install vim-plug: `https://github.com/junegunn/vim-plug`
@@ -17,3 +17,15 @@
 -	Run `:CocInstall coc-pyright` to support python
 -	Run `:CocInstall coc-yaml` to support yaml file
 -	Run `:CocInstall coc-docker` to support docker file
+
+## How to install Vim
+
+-   Install Vim: `sudo apt install vim`
+-   Install vim-plug: `https://github.com/junegunn/vim-plug`
+-   Download file `.vimrc` to home directory
+-   Open file `.vimrc` via vim
+-   Run `:PlugInstall` to install plugin
+-   Run `:PlugClean` to delete plugin
+-   Install Nerd font (Option 6): https://github.com/ryanoasis/nerd-fonts 
+
+
