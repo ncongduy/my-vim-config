@@ -1,4 +1,4 @@
-# My Own Config Vim
+# My Neovim
 
 ## How to run
 
