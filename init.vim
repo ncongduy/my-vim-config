@@ -1,11 +1,11 @@
-set number					" setup number on the left side 
+set number							" setup number on the left side 
 set autoindent					" setup indentation
 set smartindent 
 set tabstop=2
 set shiftwidth=2
 set smarttab
 set softtabstop=2
-set mouse=a					" setup using mouse on Vim
+set mouse=a							" setup using mouse on Vim
 set nocompatible				" setup syntax highlight
 syntax on
 set background=light
@@ -19,9 +19,9 @@ call plug#begin()
 	Plug 'vim-airline/vim-airline-themes'
 
 	" {{ NERDTree help to view files on the left side }}
-	Plug 'preservim/nerdtree'									" file browser
+	Plug 'preservim/nerdtree'													" file browser
 	Plug 'Xuyuanp/nerdtree-git-plugin'								" git status
-	" Plug 'ryanoasis/vim-devicons'									" icon
+	" Plug 'ryanoasis/vim-devicons'										" icon
 	Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 	
 	" {{ syntax plugin for 100 languages }}
@@ -31,10 +31,10 @@ call plug#begin()
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 	Plug 'junegunn/fzf.vim' 
 
-	Plug 'https://github.com/ap/vim-css-color'							" CSS Color Preview
-	Plug 'https://github.com/tpope/vim-commentary'							" For Commenting gcc & gc
-	Plug 'tpope/vim-fugitive'									" Git
-	Plug 'https://github.com/preservim/tagbar'							" Tagbar
+	Plug 'https://github.com/ap/vim-css-color'												" CSS Color Preview
+	Plug 'https://github.com/tpope/vim-commentary'										" For Commenting gcc & gc
+	Plug 'tpope/vim-fugitive'																					" Git
+	Plug 'https://github.com/preservim/tagbar'												" Tagbar
 	" Plug 'https://github.com/rafi/awesome-vim-colorschemes'					" Retro Scheme
 	Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }				" markdown preview
 
@@ -50,8 +50,8 @@ call plug#end()
 " colorscheme one
 
 " {{ change status bar }}
-let g:airline#extensions#tabline#enabled = 1			" Enable Tab bar
-let g:airline#extensions#tabline#left_sep = ' '			" Enable Tab seperator 
+let g:airline#extensions#tabline#enabled = 1						" Enable Tab bar
+let g:airline#extensions#tabline#left_sep = ' '					" Enable Tab seperator 
 let g:airline#extensions#tabline#left_alt_sep = '|' 		" Enable Tab seperator
 
 let g:airline_theme='angr'
