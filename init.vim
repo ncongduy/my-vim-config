@@ -31,11 +31,11 @@ call plug#begin()
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 	Plug 'junegunn/fzf.vim' 
 
-	Plug 'https://github.com/ap/vim-css-color'												" CSS Color Preview
-	Plug 'https://github.com/tpope/vim-commentary'										" For Commenting gcc & gc
-	Plug 'tpope/vim-fugitive'																					" Git
-	Plug 'https://github.com/preservim/tagbar'												" Tagbar
-	" Plug 'https://github.com/rafi/awesome-vim-colorschemes'					" Retro Scheme
+	Plug 'https://github.com/ap/vim-css-color'																		" CSS Color Preview
+	Plug 'https://github.com/tpope/vim-commentary'																" For Commenting gcc & gc
+	Plug 'tpope/vim-fugitive'																											" Git
+	Plug 'https://github.com/preservim/tagbar'																		" Tagbar
+	Plug 'https://github.com/rafi/awesome-vim-colorschemes'												" Retro Scheme
 	Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }				" markdown preview
 
 	" {{ autocomplete code }}
@@ -47,7 +47,7 @@ call plug#begin()
 
 call plug#end()
 
-" colorscheme one
+" colorscheme sonokai
 
 " {{ change status bar }}
 let g:airline#extensions#tabline#enabled = 1						" Enable Tab bar
