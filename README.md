@@ -18,6 +18,27 @@
 -	Run `:CocInstall coc-yaml` to support yaml file
 -	Run `:CocInstall coc-docker` to support docker file
 
+## How to install Terraform COC
+- Install Terraform server: `sudo apt install terraform-ls`
+- Install coc.nvim plugin: https://github.com/neoclide/coc.nvim
+- Go to path: `~/.config/nvim`, and open file `nvim init.vim`
+- Add configuration in Neovim: `:CocConfig`, and add content below
+```json
+{
+  "languageserver": {
+    "terraform": {
+      "command": "terraform-ls",
+      "args": ["serve"],
+      "filetypes": ["terraform", "tf"],
+      "initializationOptions": {},
+      "settings": {}
+    }
+  }
+}
+```
+- [Reference](https://github.com/hashicorp/terraform-ls/blob/main/docs/USAGE.md#vim--neovim)
+
+
 ## How to install Vim
 
 -   Install Vim: `sudo apt install vim`
