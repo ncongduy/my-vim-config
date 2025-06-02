@@ -18,6 +18,14 @@
 -	Run `:CocInstall coc-yaml` to support yaml file
 -	Run `:CocInstall coc-docker` to support docker file
 
+## Install Neovim 0.9.5
+```
+wget https://github.com/neovim/neovim/releases/download/v0.9.5/nvim-linux64.tar.gz
+tar xzvf nvim-linux64.tar.gz
+sudo mv nvim-linux64 /opt/nvim
+sudo ln -s /opt/nvim/bin/nvim /usr/local/bin/nvim
+```
+
 ## How to install Terraform COC
 - Install Terraform server: `sudo apt install terraform-ls`
 - Install coc.nvim plugin: https://github.com/neoclide/coc.nvim
