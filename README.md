@@ -141,11 +141,17 @@ tmux a -t <name_session>
 # view session
 ctrl-b s
 
+# kill session
+tmux kill-session -t <name_session>
+
 # create a new window in session
 ctrl-b c
 
 # view window
 ctrl-b w
+
+# kill window
+tmux kill-window -t <name_session>:<window_index>
 
 # navigate window 
 ctrl-b n # next
