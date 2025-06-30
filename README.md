@@ -90,4 +90,79 @@ gr
 -   Run `:PlugClean` to delete plugin
 -   Install Nerd font (Option 6): https://github.com/ryanoasis/nerd-fonts 
 
+---
 
+# Tmux
+
+## Install and configure
+
+- Install tmux: `sudo apt install tmux`
+- Copy `.tmux.conf` to path `~/.tmux.conf`
+- `git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm`
+
+## Basic instruction
+
+```bash
+# session => window => pane
+
+# split horizontal
+ctrl-b _
+
+# split vertical
+ctrl-b |
+
+# reload config
+ctrl-b r
+
+# install plugins
+ctrl-b => shift i
+
+# remove plugins
+ctrl-b => alt u
+
+# select pane
+ctrl-b j, k, l, h
+
+# resize pane
+ctrl-b ctrl-arrow
+
+# create a new session
+tmux new -s <name_session>
+
+# list session
+tmux ls
+
+# detach session
+ctrl-b d
+
+# attach session
+tmux a -t <name_session>
+
+# view session
+ctrl-b s
+
+# create a new window in session
+ctrl-b c
+
+# view window
+ctrl-b w
+
+# navigate window 
+ctrl-b n # next
+ctrl-b p # previous
+ctrl-b number # slect the ordinal of window
+
+# rename window
+ctrl-b ,
+
+############################################
+# open copy mode
+# install xclip: sudo apt install xclip
+# option 1: scrolling mouse
+# option 2: ctrl-b [
+# Then using vim movement: v(select), y(copy)
+
+# exit copy mode: ctrl-c
+# paste: ctrl-shift-v
+############################################
+```
