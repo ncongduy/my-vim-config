@@ -1,15 +1,37 @@
-set number							" setup number on the left side 
-set autoindent					" setup indentation
-set smartindent 
+" line numbers
+set number
+
+" tabs & indentation
 set tabstop=2
 set shiftwidth=2
+set expandtab
+set autoindent
+set smartindent 
 set smarttab
 set softtabstop=2
-set mouse=a							" setup using mouse on Vim
-set nocompatible				" setup syntax highlight
-syntax on
+
+" search settings
+set ignorecase
+set smartcase
+
+" cursor line
+set cursorline
+
+" appearance
+" set termguicolors
 set background=light
-" set ignorecase " Ignore sensitive case
+set signcolumn=yes
+
+" split windows
+set splitright
+set splitbelow
+
+" mouse
+set mouse=a
+
+" syntax highlight
+set nocompatible
+syntax on
 
 " {{ install plugin }}
 call plug#begin()
@@ -19,9 +41,8 @@ call plug#begin()
 	Plug 'vim-airline/vim-airline-themes'
 
 	" {{ NERDTree help to view files on the left side }}
-	Plug 'preservim/nerdtree'													" file browser
-	Plug 'Xuyuanp/nerdtree-git-plugin'								" git status
-	" Plug 'ryanoasis/vim-devicons'										" icon
+	Plug 'preservim/nerdtree'																												" file browser
+	Plug 'Xuyuanp/nerdtree-git-plugin'																							" git status
 	Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 	
 	" {{ syntax plugin for 100 languages }}
@@ -31,20 +52,20 @@ call plug#begin()
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 	Plug 'junegunn/fzf.vim' 
 
-	Plug 'https://github.com/ap/vim-css-color'																		" CSS Color Preview
-	Plug 'https://github.com/tpope/vim-commentary'																" For Commenting gcc & gc
-	Plug 'tpope/vim-fugitive'																											" Git
-	Plug 'https://github.com/preservim/tagbar'																		" Tagbar
-	Plug 'https://github.com/rafi/awesome-vim-colorschemes'												" Retro Scheme
-	Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }				" markdown preview
-
 	" {{ autocomplete code }}
-	Plug 'jiangmiao/auto-pairs'									" Parenthesis auto 
-	Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'npm ci'}					" code completion
+	Plug 'jiangmiao/auto-pairs'																												" Parenthesis auto 
+	Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'npm ci'}										" code completion
 
 	" {{ multiple cursors }}
 	Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
+  " {{ Others }}
+	Plug 'https://github.com/ap/vim-css-color'																				" CSS Color Preview
+	Plug 'https://github.com/tpope/vim-commentary'																		" For Commenting gcc & gc
+	Plug 'tpope/vim-fugitive'																													" Git
+	Plug 'https://github.com/preservim/tagbar'																				" Tagbar
+	Plug 'https://github.com/rafi/awesome-vim-colorschemes'													  " Retro Scheme
+	Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }						" markdown preview
 call plug#end()
 
 " colorscheme sonokai
@@ -102,6 +123,7 @@ map <C-P> :Files<CR>
 " {{ check Coc extensions }}
 " check coc extensions - :CocList extensions
 " :CocInstall coc-yaml, coc-docker, coc-json, coc-pyright, coc-tsserver, coc-clangd
+" :CocUninstall coc-clangd
 
 "  {{ code completion config }}
 
