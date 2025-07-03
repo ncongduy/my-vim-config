@@ -106,10 +106,10 @@ gr
 # session => window => pane
 
 # split horizontal
-ctrl-b _
+ctrl-b _ (default: ctrl-b ")
 
 # split vertical
-ctrl-b |
+ctrl-b | (default: ctrl-b %)
 
 # reload config
 ctrl-b r
@@ -121,7 +121,7 @@ ctrl-b => shift i
 ctrl-b => alt u
 
 # select pane
-ctrl-b j, k, l, h
+ctrl-b j, k, l, h (default: ctrl-b arrow)
 
 # resize pane
 ctrl-b ctrl-arrow
@@ -170,5 +170,11 @@ ctrl-b ,
 
 # exit copy mode: ctrl-c
 # paste: ctrl-shift-v
+---------------------------------------------
+
+# default:
+# open copy mode: ctrl-b [
+# using mouse movement, right click and select copy
+# exit copy mode: ctrl-c
 ############################################
 ```
