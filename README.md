@@ -24,6 +24,7 @@ sudo ln -s /opt/nvim/bin/nvim /usr/local/bin/nvim
 -	Run `:CocInstall coc-pyright` to support python
 -	Run `:CocInstall coc-yaml` to support yaml file
 -	Run `:CocInstall coc-docker` to support docker file
+-	Run `:CocInstall coc-flutter` to support flutter
 
 ## How to install Terraform COC in Neovim
 - Install Terraform server: `sudo apt install terraform-ls`
