@@ -62,6 +62,9 @@ sudo ln -s /opt/nvim/bin/nvim /usr/local/bin/nvim
 
 - Keymaps of Coc
 ```bash
+# show definition
+shift-k
+
 # coc-definition
 gd
 
