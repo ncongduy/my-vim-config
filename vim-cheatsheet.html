@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vim Cheatsheet — No Plugins</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap');
+
+  :root {
+    --bg: #0d0d0d;
+    --surface: #141414;
+    --border: #222;
+    --accent: #c8ff00;
+    --accent2: #ff6b35;
+    --accent3: #00d4ff;
+    --text: #e8e8e8;
+    --muted: #666;
+    --key-bg: #1a1a1a;
+    --key-border: #333;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    line-height: 1.5;
+    padding: 32px 24px;
+    min-height: 100vh;
+  }
+
+  header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 20px;
+  }
+
+  header h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: var(--accent);
+  }
+
+  header span {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .card.wide { grid-column: span 2; }
+  .card.full { grid-column: span 3; }
+
+  .card-header {
+    padding: 8px 14px;
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .card-header::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+  }
+
+  .c-green .card-header { background: rgba(200,255,0,0.07); color: var(--accent); }
+  .c-green .card-header::before { background: var(--accent); }
+
+  .c-orange .card-header { background: rgba(255,107,53,0.07); color: var(--accent2); }
+  .c-orange .card-header::before { background: var(--accent2); }
+
+  .c-blue .card-header { background: rgba(0,212,255,0.07); color: var(--accent3); }
+  .c-blue .card-header::before { background: var(--accent3); }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  tr { border-bottom: 1px solid var(--border); }
+  tr:last-child { border-bottom: none; }
+
+  td {
+    padding: 6px 14px;
+    vertical-align: top;
+  }
+
+  td:first-child {
+    white-space: nowrap;
+    width: 1%;
+  }
+
+  td:last-child {
+    color: var(--muted);
+    font-size: 11px;
+    padding-left: 8px;
+  }
+
+  kbd {
+    display: inline-block;
+    background: var(--key-bg);
+    border: 1px solid var(--key-border);
+    border-bottom-width: 2px;
+    border-radius: 3px;
+    padding: 1px 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text);
+    margin: 1px 1px;
+  }
+
+  .c-green kbd { color: var(--accent); border-color: rgba(200,255,0,0.25); }
+  .c-orange kbd { color: var(--accent2); border-color: rgba(255,107,53,0.25); }
+  .c-blue kbd { color: var(--accent3); border-color: rgba(0,212,255,0.25); }
+
+  .tip {
+    grid-column: span 3;
+    background: rgba(200,255,0,0.04);
+    border: 1px solid rgba(200,255,0,0.15);
+    border-radius: 4px;
+    padding: 12px 16px;
+    font-size: 11px;
+    color: var(--muted);
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .tip strong { color: var(--accent); margin-right: 6px; }
+
+  .mode-badge {
+    display: inline-block;
+    padding: 1px 6px;
+    border-radius: 2px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-right: 4px;
+  }
+
+  .mode-n { background: rgba(200,255,0,0.15); color: var(--accent); }
+  .mode-i { background: rgba(255,107,53,0.15); color: var(--accent2); }
+  .mode-v { background: rgba(0,212,255,0.15); color: var(--accent3); }
+
+  footer {
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>VIM</h1>
+  <span>No-Plugin Cheatsheet</span>
+  <span style="margin-left:auto">
+    <span class="mode-badge mode-n">N</span> Normal &nbsp;
+    <span class="mode-badge mode-i">I</span> Insert &nbsp;
+    <span class="mode-badge mode-v">V</span> Visual
+  </span>
+</header>
+
+<div class="grid">
+
+  <!-- MODES -->
+  <div class="card c-green">
+    <div class="card-header">Modes</div>
+    <table>
+      <tr><td><kbd>i</kbd></td><td>Insert before cursor</td></tr>
+      <tr><td><kbd>a</kbd></td><td>Insert after cursor</td></tr>
+      <tr><td><kbd>I</kbd></td><td>Insert at line start</td></tr>
+      <tr><td><kbd>A</kbd></td><td>Insert at line end</td></tr>
+      <tr><td><kbd>o</kbd></td><td>New line below</td></tr>
+      <tr><td><kbd>O</kbd></td><td>New line above</td></tr>
+      <tr><td><kbd>v</kbd></td><td>Visual mode</td></tr>
+      <tr><td><kbd>V</kbd></td><td>Visual line mode</td></tr>
+      <tr><td><kbd>Ctrl</kbd><kbd>v</kbd></td><td>Visual block mode</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td>Return to Normal</td></tr>
+    </table>
+  </div>
+
+  <!-- NAVIGATION -->
+  <div class="card c-green">
+    <div class="card-header">Navigation</div>
+    <table>
+      <tr><td><kbd>h</kbd><kbd>j</kbd><kbd>k</kbd><kbd>l</kbd></td><td>←↓↑→</td></tr>
+      <tr><td><kbd>w</kbd> / <kbd>b</kbd></td><td>Next / prev word</td></tr>
+      <tr><td><kbd>e</kbd></td><td>End of word</td></tr>
+      <tr><td><kbd>0</kbd> / <kbd>$</kbd></td><td>Line start / end</td></tr>
+      <tr><td><kbd>gg</kbd> / <kbd>G</kbd></td><td>File start / end</td></tr>
+      <tr><td><kbd>:n</kbd></td><td>Go to line n</td></tr>
+      <tr><td><kbd>Ctrl</kbd><kbd>d</kbd></td><td>Half page down</td></tr>
+      <tr><td><kbd>Ctrl</kbd><kbd>u</kbd></td><td>Half page up</td></tr>
+      <tr><td><kbd>%</kbd></td><td>Jump to matching bracket</td></tr>
+      <tr><td><kbd>''</kbd></td><td>Jump to last position</td></tr>
+    </table>
+  </div>
+
+  <!-- FILE MANAGEMENT -->
+  <div class="card c-orange">
+    <div class="card-header">File Management</div>
+    <table>
+      <tr><td><kbd>:e file</kbd></td><td>Open file</td></tr>
+      <tr><td><kbd>:e .</kbd></td><td>Browse directory (netrw)</td></tr>
+      <tr><td><kbd>:w</kbd></td><td>Save</td></tr>
+      <tr><td><kbd>:w file</kbd></td><td>Save as</td></tr>
+      <tr><td><kbd>:q</kbd></td><td>Quit</td></tr>
+      <tr><td><kbd>:wq</kbd></td><td>Save and quit</td></tr>
+      <tr><td><kbd>:q!</kbd></td><td>Force quit</td></tr>
+      <tr><td><kbd>:ls</kbd></td><td>List open buffers</td></tr>
+      <tr><td><kbd>:b name</kbd></td><td>Switch to buffer</td></tr>
+      <tr><td><kbd>:bn</kbd> / <kbd>:bp</kbd></td><td>Next / prev buffer</td></tr>
+    </table>
+  </div>
+
+  <!-- EDITING -->
+  <div class="card c-orange">
+    <div class="card-header">Editing</div>
+    <table>
+      <tr><td><kbd>x</kbd></td><td>Delete char</td></tr>
+      <tr><td><kbd>dd</kbd></td><td>Delete line</td></tr>
+      <tr><td><kbd>dw</kbd></td><td>Delete word</td></tr>
+      <tr><td><kbd>D</kbd></td><td>Delete to end of line</td></tr>
+      <tr><td><kbd>yy</kbd></td><td>Yank (copy) line</td></tr>
+      <tr><td><kbd>yw</kbd></td><td>Yank word</td></tr>
+      <tr><td><kbd>p</kbd> / <kbd>P</kbd></td><td>Paste after / before</td></tr>
+      <tr><td><kbd>u</kbd></td><td>Undo</td></tr>
+      <tr><td><kbd>Ctrl</kbd><kbd>r</kbd></td><td>Redo</td></tr>
+      <tr><td><kbd>.</kbd></td><td>Repeat last change</td></tr>
+    </table>
+  </div>
+
+  <!-- SPLITS & TABS -->
+  <div class="card c-blue">
+    <div class="card-header">Splits &amp; Tabs</div>
+    <table>
+      <tr><td><kbd>:sp file</kbd></td><td>Horizontal split</td></tr>
+      <tr><td><kbd>:vsp file</kbd></td><td>Vertical split</td></tr>
+      <tr><td><kbd>Ctrl</kbd><kbd>w</kbd><kbd>w</kbd></td><td>Cycle splits</td></tr>
+      <tr><td><kbd>Ctrl</kbd><kbd>w</kbd><kbd>h/j/k/l</kbd></td><td>Move between splits</td></tr>
+      <tr><td><kbd>Ctrl</kbd><kbd>w</kbd><kbd>=</kbd></td><td>Equal split sizes</td></tr>
+      <tr><td><kbd>:tabedit file</kbd></td><td>Open in new tab</td></tr>
+      <tr><td><kbd>gt</kbd> / <kbd>gT</kbd></td><td>Next / prev tab</td></tr>
+      <tr><td><kbd>:tabclose</kbd></td><td>Close tab</td></tr>
+    </table>
+  </div>
+
+  <!-- SEARCH -->
+  <div class="card c-green">
+    <div class="card-header">Search &amp; Replace</div>
+    <table>
+      <tr><td><kbd>/pattern</kbd></td><td>Search forward</td></tr>
+      <tr><td><kbd>?pattern</kbd></td><td>Search backward</td></tr>
+      <tr><td><kbd>n</kbd> / <kbd>N</kbd></td><td>Next / prev match</td></tr>
+      <tr><td><kbd>*</kbd></td><td>Search word under cursor</td></tr>
+      <tr><td><kbd>:s/old/new/g</kbd></td><td>Replace in line</td></tr>
+      <tr><td><kbd>:%s/old/new/g</kbd></td><td>Replace in file</td></tr>
+      <tr><td><kbd>:%s/old/new/gc</kbd></td><td>Replace with confirm</td></tr>
+      <tr><td><kbd>:noh</kbd></td><td>Clear highlights</td></tr>
+    </table>
+  </div>
+
+  <!-- GREP & QUICKFIX -->
+  <div class="card c-orange wide">
+    <div class="card-header">Grep &amp; Quickfix</div>
+    <table>
+      <tr><td><kbd>:grep -rn "pattern" .</kbd></td><td>Grep recursively in project</td></tr>
+      <tr><td><kbd>:grep -rin "pattern" --include="*.py" .</kbd></td><td>Grep with file filter</td></tr>
+      <tr><td><kbd>:vimgrep /pattern/ **/*</kbd></td><td>Built-in grep (no shell needed)</td></tr>
+      <tr><td><kbd>:copen</kbd></td><td>Open quickfix results window</td></tr>
+      <tr><td><kbd>:cclose</kbd></td><td>Close quickfix window</td></tr>
+      <tr><td><kbd>:cn</kbd> / <kbd>:cp</kbd></td><td>Next / prev quickfix result</td></tr>
+      <tr><td><kbd>:!grep -rn "pattern" .</kbd></td><td>Run grep, show output only</td></tr>
+      <tr><td><kbd>:r !grep "pattern" file</kbd></td><td>Insert grep results into buffer</td></tr>
+    </table>
+  </div>
+
+  <!-- MARKS -->
+  <div class="card c-blue">
+    <div class="card-header">Marks &amp; Jumps</div>
+    <table>
+      <tr><td><kbd>ma</kbd></td><td>Set mark <em>a</em></td></tr>
+      <tr><td><kbd>`a</kbd></td><td>Jump to mark <em>a</em></td></tr>
+      <tr><td><kbd>:marks</kbd></td><td>List all marks</td></tr>
+      <tr><td><kbd>Ctrl</kbd><kbd>o</kbd></td><td>Jump back</td></tr>
+      <tr><td><kbd>Ctrl</kbd><kbd>i</kbd></td><td>Jump forward</td></tr>
+      <tr><td><kbd>gd</kbd></td><td>Go to local definition</td></tr>
+      <tr><td><kbd>gD</kbd></td><td>Go to global definition</td></tr>
+      <tr><td><kbd>Ctrl</kbd><kbd>]</kbd></td><td>Jump to ctag</td></tr>
+    </table>
+  </div>
+
+  <!-- MACROS -->
+  <div class="card c-green">
+    <div class="card-header">Macros &amp; Registers</div>
+    <table>
+      <tr><td><kbd>qa</kbd></td><td>Record macro into <em>a</em></td></tr>
+      <tr><td><kbd>q</kbd></td><td>Stop recording</td></tr>
+      <tr><td><kbd>@a</kbd></td><td>Play macro <em>a</em></td></tr>
+      <tr><td><kbd>@@</kbd></td><td>Repeat last macro</td></tr>
+      <tr><td><kbd>10@a</kbd></td><td>Play macro 10 times</td></tr>
+      <tr><td><kbd>"ay</kbd></td><td>Yank into register <em>a</em></td></tr>
+      <tr><td><kbd>"ap</kbd></td><td>Paste from register <em>a</em></td></tr>
+      <tr><td><kbd>:reg</kbd></td><td>Show all registers</td></tr>
+    </table>
+  </div>
+
+  <!-- USEFUL SETTINGS -->
+  <div class="card c-orange">
+    <div class="card-header">Useful .vimrc Settings</div>
+    <table>
+      <tr><td><kbd>set number</kbd></td><td>Show line numbers</td></tr>
+      <tr><td><kbd>set relativenumber</kbd></td><td>Relative line numbers</td></tr>
+      <tr><td><kbd>set hlsearch</kbd></td><td>Highlight search results</td></tr>
+      <tr><td><kbd>set incsearch</kbd></td><td>Incremental search</td></tr>
+      <tr><td><kbd>set ignorecase</kbd></td><td>Case insensitive search</td></tr>
+      <tr><td><kbd>set smartcase</kbd></td><td>Case sensitive if uppercase used</td></tr>
+      <tr><td><kbd>set wildmenu</kbd></td><td>Better command completion</td></tr>
+      <tr><td><kbd>set grepprg=rg\ --vimgrep</kbd></td><td>Use ripgrep for :grep</td></tr>
+    </table>
+  </div>
+
+  <!-- TEXT OBJECTS -->
+  <div class="card c-blue">
+    <div class="card-header">Text Objects</div>
+    <table>
+      <tr><td><kbd>ciw</kbd></td><td>Change inner word</td></tr>
+      <tr><td><kbd>ci"</kbd></td><td>Change inside quotes</td></tr>
+      <tr><td><kbd>ci(</kbd></td><td>Change inside parens</td></tr>
+      <tr><td><kbd>ca(</kbd></td><td>Change around parens (incl.)</td></tr>
+      <tr><td><kbd>di{</kbd></td><td>Delete inside braces</td></tr>
+      <tr><td><kbd>vi[</kbd></td><td>Select inside brackets</td></tr>
+      <tr><td><kbd>yat</kbd></td><td>Yank around HTML tag</td></tr>
+      <tr><td><kbd>vip</kbd></td><td>Select inner paragraph</td></tr>
+    </table>
+  </div>
+
+  <!-- TIP BAR -->
+  <div class="tip">
+    <div><strong>Pro tip:</strong> Combine counts with commands — <kbd>3dd</kbd> deletes 3 lines, <kbd>5j</kbd> moves down 5.</div>
+    <div><strong>Netrw:</strong> Use <kbd>:Explore</kbd> or <kbd>:e .</kbd> as a built-in file tree. Press <kbd>%</kbd> to create a new file.</div>
+    <div><strong>Shell:</strong> Run any shell command with <kbd>:!cmd</kbd> — e.g. <kbd>:!python %</kbd> runs current file.</div>
+    <div><strong>Quickfix:</strong> <kbd>:grep</kbd> + <kbd>:copen</kbd> replaces fzf for most searches.</div>
+  </div>
+
+</div>
+
+<footer>VIM — NO PLUGINS NEEDED &nbsp;·&nbsp; :help for anything &nbsp;·&nbsp; vimtutor to learn interactively</footer>
+
+</body>
+</html>
