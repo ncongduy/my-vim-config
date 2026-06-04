@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neovim &amp; Linux Cheatsheet</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@600;800&display=swap" rel="stylesheet">
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          mono: ['JetBrains Mono', 'monospace'],
+          display: ['Syne', 'sans-serif'],
+        },
+      },
+    },
+  };
+</script>
+<style>
+  kbd {
+    display: inline-block;
+    background: #f4f4ef;
+    border: 1px solid #d4d4cc;
+    border-bottom-width: 2px;
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #1f2937;
+    white-space: nowrap;
+    margin: 1px;
+  }
+</style>
+</head>
+<body class="bg-neutral-100 text-neutral-800 font-mono text-[12px] leading-relaxed min-h-screen p-8">
+
+<div class="max-w-6xl mx-auto">
+
+  <!-- HEADER -->
+  <header class="flex items-baseline gap-4 border-b border-neutral-300 pb-5 mb-7">
+    <h1 class="font-display font-extrabold text-3xl tracking-tight text-emerald-700">NEOVIM</h1>
+    <span class="text-emerald-600">+</span>
+    <h1 class="font-display font-extrabold text-3xl tracking-tight text-sky-700">LINUX</h1>
+    <span class="ml-auto text-[11px] tracking-[2px] uppercase text-neutral-400">Quick Reference</span>
+  </header>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+    <!-- ============ NEOVIM ============ -->
+
+    <!-- MODES -->
+    <div class="bg-white border border-neutral-200 rounded-md overflow-hidden">
+      <div class="px-4 py-2 bg-emerald-50 text-emerald-700 font-display font-bold text-[10px] tracking-[2.5px] uppercase">Nvim · Modes</div>
+      <table class="w-full">
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 w-px whitespace-nowrap"><kbd>i</kbd> / <kbd>a</kbd></td><td class="py-1.5 px-2 text-neutral-500">Insert before / after cursor</td></tr>
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 whitespace-nowrap"><kbd>I</kbd> / <kbd>A</kbd></td><td class="py-1.5 px-2 text-neutral-500">Insert at line start / end</td></tr>
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 whitespace-nowrap"><kbd>o</kbd> / <kbd>O</kbd></td><td class="py-1.5 px-2 text-neutral-500">New line below / above</td></tr>
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 whitespace-nowrap"><kbd>v</kbd> / <kbd>V</kbd></td><td class="py-1.5 px-2 text-neutral-500">Visual / visual line</td></tr>
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 whitespace-nowrap"><kbd>Ctrl</kbd><kbd>v</kbd></td><td class="py-1.5 px-2 text-neutral-500">Visual block</td></tr>
+        <tr><td class="py-1.5 px-4 whitespace-nowrap"><kbd>Esc</kbd></td><td class="py-1.5 px-2 text-neutral-500">Return to Normal</td></tr>
+      </table>
+    </div>
+
+    <!-- NAVIGATION -->
+    <div class="bg-white border border-neutral-200 rounded-md overflow-hidden">
+      <div class="px-4 py-2 bg-emerald-50 text-emerald-700 font-display font-bold text-[10px] tracking-[2.5px] uppercase">Nvim · Navigation</div>
+      <table class="w-full">
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 w-px whitespace-nowrap"><kbd>h</kbd><kbd>j</kbd><kbd>k</kbd><kbd>l</kbd></td><td class="py-1.5 px-2 text-neutral-500">←↓↑→</td></tr>
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 whitespace-nowrap"><kbd>w</kbd> / <kbd>b</kbd> / <kbd>e</kbd></td><td class="py-1.5 px-2 text-neutral-500">Next / prev word, word end</td></tr>
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 whitespace-nowrap"><kbd>0</kbd> / <kbd>$</kbd></td><td class="py-1.5 px-2 text-neutral-500">Line start / end</td></tr>
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 whitespace-nowrap"><kbd>gg</kbd> / <kbd>G</kbd></td><td class="py-1.5 px-2 text-neutral-500">File start / end</td></tr>
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 whitespace-nowrap"><kbd>Ctrl</kbd><kbd>d</kbd> / <kbd>Ctrl</kbd><kbd>u</kbd></td><td class="py-1.5 px-2 text-neutral-500">Half page down / up</td></tr>
+        <tr><td class="py-1.5 px-4 whitespace-nowrap"><kbd>%</kbd></td><td class="py-1.5 px-2 text-neutral-500">Jump to matching bracket</td></tr>
+      </table>
+    </div>
+
+    <!-- EDITING -->
+    <div class="bg-white border border-neutral-200 rounded-md overflow-hidden">
+      <div class="px-4 py-2 bg-emerald-50 text-emerald-700 font-display font-bold text-[10px] tracking-[2.5px] uppercase">Nvim · Editing</div>
+      <table class="w-full">
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 w-px whitespace-nowrap"><kbd>x</kbd> / <kbd>dd</kbd></td><td class="py-1.5 px-2 text-neutral-500">Delete char / line</td></tr>
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 whitespace-nowrap"><kbd>dw</kbd> / <kbd>D</kbd></td><td class="py-1.5 px-2 text-neutral-500">Delete word / to line end</td></tr>
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 whitespace-nowrap"><kbd>yy</kbd> / <kbd>yw</kbd></td><td class="py-1.5 px-2 text-neutral-500">Yank line / word</td></tr>
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 whitespace-nowrap"><kbd>p</kbd> / <kbd>P</kbd></td><td class="py-1.5 px-2 text-neutral-500">Paste after / before</td></tr>
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 whitespace-nowrap"><kbd>u</kbd> / <kbd>Ctrl</kbd><kbd>r</kbd></td><td class="py-1.5 px-2 text-neutral-500">Undo / redo</td></tr>
+        <tr><td class="py-1.5 px-4 whitespace-nowrap"><kbd>.</kbd></td><td class="py-1.5 px-2 text-neutral-500">Repeat last change</td></tr>
+      </table>
+    </div>
+
+    <!-- SEARCH -->
+    <div class="bg-white border border-neutral-200 rounded-md overflow-hidden">
+      <div class="px-4 py-2 bg-emerald-50 text-emerald-700 font-display font-bold text-[10px] tracking-[2.5px] uppercase">Nvim · Search &amp; Replace</div>
+      <table class="w-full">
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 w-px whitespace-nowrap"><kbd>/pat</kbd> / <kbd>?pat</kbd></td><td class="py-1.5 px-2 text-neutral-500">Search fwd / back</td></tr>
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 whitespace-nowrap"><kbd>n</kbd> / <kbd>N</kbd></td><td class="py-1.5 px-2 text-neutral-500">Next / prev match</td></tr>
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 whitespace-nowrap"><kbd>*</kbd></td><td class="py-1.5 px-2 text-neutral-500">Search word under cursor</td></tr>
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 whitespace-nowrap"><kbd>:%s/old/new/g</kbd></td><td class="py-1.5 px-2 text-neutral-500">Replace in file</td></tr>
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 whitespace-nowrap"><kbd>:%s/old/new/gc</kbd></td><td class="py-1.5 px-2 text-neutral-500">Replace with confirm</td></tr>
+        <tr><td class="py-1.5 px-4 whitespace-nowrap"><kbd>:noh</kbd></td><td class="py-1.5 px-2 text-neutral-500">Clear highlights</td></tr>
+      </table>
+    </div>
+
+    <!-- SPLITS & TABS -->
+    <div class="bg-white border border-neutral-200 rounded-md overflow-hidden">
+      <div class="px-4 py-2 bg-emerald-50 text-emerald-700 font-display font-bold text-[10px] tracking-[2.5px] uppercase">Nvim · Splits &amp; Tabs</div>
+      <table class="w-full">
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 w-px whitespace-nowrap"><kbd>:sp</kbd> / <kbd>:vsp</kbd></td><td class="py-1.5 px-2 text-neutral-500">Horizontal / vertical split</td></tr>
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 whitespace-nowrap"><kbd>Ctrl</kbd><kbd>w</kbd><kbd>w</kbd></td><td class="py-1.5 px-2 text-neutral-500">Cycle splits</td></tr>
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 whitespace-nowrap"><kbd>Ctrl</kbd><kbd>w</kbd><kbd>h/j/k/l</kbd></td><td class="py-1.5 px-2 text-neutral-500">Move between splits</td></tr>
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 whitespace-nowrap"><kbd>:tabedit</kbd></td><td class="py-1.5 px-2 text-neutral-500">Open in new tab</td></tr>
+        <tr><td class="py-1.5 px-4 whitespace-nowrap"><kbd>gt</kbd> / <kbd>gT</kbd></td><td class="py-1.5 px-2 text-neutral-500">Next / prev tab</td></tr>
+      </table>
+    </div>
+
+    <!-- TEXT OBJECTS -->
+    <div class="bg-white border border-neutral-200 rounded-md overflow-hidden">
+      <div class="px-4 py-2 bg-emerald-50 text-emerald-700 font-display font-bold text-[10px] tracking-[2.5px] uppercase">Nvim · Text Objects</div>
+      <table class="w-full">
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 w-px whitespace-nowrap"><kbd>ciw</kbd></td><td class="py-1.5 px-2 text-neutral-500">Change inner word</td></tr>
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 whitespace-nowrap"><kbd>ci"</kbd> / <kbd>ci(</kbd></td><td class="py-1.5 px-2 text-neutral-500">Change inside quotes / parens</td></tr>
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 whitespace-nowrap"><kbd>ca(</kbd></td><td class="py-1.5 px-2 text-neutral-500">Change around parens</td></tr>
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 whitespace-nowrap"><kbd>di{</kbd></td><td class="py-1.5 px-2 text-neutral-500">Delete inside braces</td></tr>
+        <tr><td class="py-1.5 px-4 whitespace-nowrap"><kbd>vip</kbd> / <kbd>yat</kbd></td><td class="py-1.5 px-2 text-neutral-500">Select paragraph / yank HTML tag</td></tr>
+      </table>
+    </div>
+
+    <!-- ============ LINUX ============ -->
+
+    <!-- FILES & DIRS -->
+    <div class="bg-white border border-neutral-200 rounded-md overflow-hidden">
+      <div class="px-4 py-2 bg-sky-50 text-sky-700 font-display font-bold text-[10px] tracking-[2.5px] uppercase">Linux · Files &amp; Dirs</div>
+      <table class="w-full">
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 w-px whitespace-nowrap"><kbd>ls -lah</kbd></td><td class="py-1.5 px-2 text-neutral-500">List all, long, human sizes</td></tr>
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 whitespace-nowrap"><kbd>cp -r</kbd> / <kbd>mv</kbd></td><td class="py-1.5 px-2 text-neutral-500">Copy recursive / move</td></tr>
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 whitespace-nowrap"><kbd>rm -rf</kbd></td><td class="py-1.5 px-2 text-neutral-500">Remove recursive (careful!)</td></tr>
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 whitespace-nowrap"><kbd>mkdir -p</kbd></td><td class="py-1.5 px-2 text-neutral-500">Make dirs incl. parents</td></tr>
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 whitespace-nowrap"><kbd>find . -name "*.py"</kbd></td><td class="py-1.5 px-2 text-neutral-500">Find files by name</td></tr>
+        <tr><td class="py-1.5 px-4 whitespace-nowrap"><kbd>ln -s tgt link</kbd></td><td class="py-1.5 px-2 text-neutral-500">Create symlink</td></tr>
+      </table>
+    </div>
+
+    <!-- VIEWING & SEARCH -->
+    <div class="bg-white border border-neutral-200 rounded-md overflow-hidden">
+      <div class="px-4 py-2 bg-sky-50 text-sky-700 font-display font-bold text-[10px] tracking-[2.5px] uppercase">Linux · View &amp; Search</div>
+      <table class="w-full">
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 w-px whitespace-nowrap"><kbd>cat</kbd> / <kbd>less</kbd></td><td class="py-1.5 px-2 text-neutral-500">Dump / page through file</td></tr>
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 whitespace-nowrap"><kbd>head -n</kbd> / <kbd>tail -f</kbd></td><td class="py-1.5 px-2 text-neutral-500">First lines / follow log</td></tr>
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 whitespace-nowrap"><kbd>grep -rn "pat" .</kbd></td><td class="py-1.5 px-2 text-neutral-500">Recursive search w/ line nums</td></tr>
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 whitespace-nowrap"><kbd>wc -l</kbd></td><td class="py-1.5 px-2 text-neutral-500">Count lines</td></tr>
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 whitespace-nowrap"><kbd>sort</kbd> / <kbd>uniq -c</kbd></td><td class="py-1.5 px-2 text-neutral-500">Sort / count duplicates</td></tr>
+        <tr><td class="py-1.5 px-4 whitespace-nowrap"><kbd>cmd | xargs</kbd></td><td class="py-1.5 px-2 text-neutral-500">Build args from stdin</td></tr>
+      </table>
+    </div>
+
+    <!-- PERMISSIONS -->
+    <div class="bg-white border border-neutral-200 rounded-md overflow-hidden">
+      <div class="px-4 py-2 bg-sky-50 text-sky-700 font-display font-bold text-[10px] tracking-[2.5px] uppercase">Linux · Permissions</div>
+      <table class="w-full">
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 w-px whitespace-nowrap"><kbd>chmod +x</kbd></td><td class="py-1.5 px-2 text-neutral-500">Make executable</td></tr>
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 whitespace-nowrap"><kbd>chmod 755</kbd></td><td class="py-1.5 px-2 text-neutral-500">rwxr-xr-x</td></tr>
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 whitespace-nowrap"><kbd>chown u:g</kbd></td><td class="py-1.5 px-2 text-neutral-500">Change owner / group</td></tr>
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 whitespace-nowrap"><kbd>sudo cmd</kbd></td><td class="py-1.5 px-2 text-neutral-500">Run as root</td></tr>
+        <tr><td class="py-1.5 px-4 whitespace-nowrap"><kbd>umask</kbd></td><td class="py-1.5 px-2 text-neutral-500">Default permission mask</td></tr>
+      </table>
+    </div>
+
+    <!-- PROCESSES -->
+    <div class="bg-white border border-neutral-200 rounded-md overflow-hidden">
+      <div class="px-4 py-2 bg-sky-50 text-sky-700 font-display font-bold text-[10px] tracking-[2.5px] uppercase">Linux · Processes</div>
+      <table class="w-full">
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 w-px whitespace-nowrap"><kbd>ps aux</kbd></td><td class="py-1.5 px-2 text-neutral-500">List all processes</td></tr>
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 whitespace-nowrap"><kbd>top</kbd> / <kbd>htop</kbd></td><td class="py-1.5 px-2 text-neutral-500">Live process monitor</td></tr>
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 whitespace-nowrap"><kbd>kill -9 PID</kbd></td><td class="py-1.5 px-2 text-neutral-500">Force kill process</td></tr>
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 whitespace-nowrap"><kbd>cmd &amp;</kbd> / <kbd>jobs</kbd></td><td class="py-1.5 px-2 text-neutral-500">Run in background / list jobs</td></tr>
+        <tr><td class="py-1.5 px-4 whitespace-nowrap"><kbd>Ctrl</kbd><kbd>z</kbd> / <kbd>fg</kbd></td><td class="py-1.5 px-2 text-neutral-500">Suspend / resume foreground</td></tr>
+      </table>
+    </div>
+
+    <!-- NETWORKING -->
+    <div class="bg-white border border-neutral-200 rounded-md overflow-hidden">
+      <div class="px-4 py-2 bg-sky-50 text-sky-700 font-display font-bold text-[10px] tracking-[2.5px] uppercase">Linux · Networking</div>
+      <table class="w-full">
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 w-px whitespace-nowrap"><kbd>curl -O url</kbd></td><td class="py-1.5 px-2 text-neutral-500">Download to file</td></tr>
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 whitespace-nowrap"><kbd>wget url</kbd></td><td class="py-1.5 px-2 text-neutral-500">Download URL</td></tr>
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 whitespace-nowrap"><kbd>ssh user@host</kbd></td><td class="py-1.5 px-2 text-neutral-500">Remote shell</td></tr>
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 whitespace-nowrap"><kbd>scp f host:~</kbd></td><td class="py-1.5 px-2 text-neutral-500">Copy file over SSH</td></tr>
+        <tr><td class="py-1.5 px-4 whitespace-nowrap"><kbd>ss -tulpn</kbd></td><td class="py-1.5 px-2 text-neutral-500">List listening ports</td></tr>
+      </table>
+    </div>
+
+    <!-- SYSTEM & ARCHIVES -->
+    <div class="bg-white border border-neutral-200 rounded-md overflow-hidden">
+      <div class="px-4 py-2 bg-sky-50 text-sky-700 font-display font-bold text-[10px] tracking-[2.5px] uppercase">Linux · System &amp; Archives</div>
+      <table class="w-full">
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 w-px whitespace-nowrap"><kbd>df -h</kbd> / <kbd>du -sh</kbd></td><td class="py-1.5 px-2 text-neutral-500">Disk free / dir size</td></tr>
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 whitespace-nowrap"><kbd>free -h</kbd></td><td class="py-1.5 px-2 text-neutral-500">Memory usage</td></tr>
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 whitespace-nowrap"><kbd>systemctl status x</kbd></td><td class="py-1.5 px-2 text-neutral-500">Service status</td></tr>
+        <tr class="border-b border-neutral-100"><td class="py-1.5 px-4 whitespace-nowrap"><kbd>tar -czf a.tgz d/</kbd></td><td class="py-1.5 px-2 text-neutral-500">Create gzip archive</td></tr>
+        <tr><td class="py-1.5 px-4 whitespace-nowrap"><kbd>tar -xzf a.tgz</kbd></td><td class="py-1.5 px-2 text-neutral-500">Extract gzip archive</td></tr>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- TIP BAR -->
+  <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4 text-[11px] text-neutral-500">
+    <div class="bg-emerald-50/60 border border-emerald-200 rounded-md px-4 py-3">
+      <strong class="text-emerald-700 mr-1.5">Nvim tip:</strong> Combine counts with commands —
+      <kbd>3dd</kbd> deletes 3 lines, <kbd>5j</kbd> moves down 5. Run shell with <kbd>:!cmd</kbd>.
+    </div>
+    <div class="bg-sky-50/60 border border-sky-200 rounded-md px-4 py-3">
+      <strong class="text-sky-700 mr-1.5">Shell tip:</strong> Pipe with <kbd>|</kbd>, redirect with
+      <kbd>&gt;</kbd> / <kbd>&gt;&gt;</kbd>, and chain with <kbd>&amp;&amp;</kbd>. <kbd>man cmd</kbd> for help.
+    </div>
+  </div>
+
+  <footer class="mt-6 pt-4 border-t border-neutral-300 text-[10px] text-neutral-400 tracking-wide text-center">
+    NEOVIM &amp; LINUX QUICK REFERENCE &nbsp;·&nbsp; :help &lt;topic&gt; &nbsp;·&nbsp; man &lt;cmd&gt;
+  </footer>
+
+</div>
+
+</body>
+</html>

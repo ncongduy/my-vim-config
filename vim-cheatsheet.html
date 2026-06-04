@@ -20,6 +20,19 @@
     --key-border: #333;
   }
 
+  body.light {
+    --bg: #f4f4f0;
+    --surface: #ffffff;
+    --border: #e2e2da;
+    --accent: #5a7d00;
+    --accent2: #d9531e;
+    --accent3: #0077a8;
+    --text: #1c1c1c;
+    --muted: #6b6b6b;
+    --key-bg: #f0f0ea;
+    --key-border: #cfcfc6;
+  }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
@@ -30,6 +43,7 @@
     line-height: 1.5;
     padding: 32px 24px;
     min-height: 100vh;
+    transition: background 0.25s ease, color 0.25s ease;
   }
 
   header {
@@ -100,6 +114,17 @@
 
   .c-blue .card-header { background: rgba(0,212,255,0.07); color: var(--accent3); }
   .c-blue .card-header::before { background: var(--accent3); }
+
+  body.light .c-green .card-header { background: rgba(90,125,0,0.10); }
+  body.light .c-orange .card-header { background: rgba(217,83,30,0.10); }
+  body.light .c-blue .card-header { background: rgba(0,119,168,0.10); }
+  body.light .c-green kbd { border-color: rgba(90,125,0,0.35); }
+  body.light .c-orange kbd { border-color: rgba(217,83,30,0.35); }
+  body.light .c-blue kbd { border-color: rgba(0,119,168,0.35); }
+  body.light .tip { background: rgba(90,125,0,0.06); border-color: rgba(90,125,0,0.25); }
+  body.light .mode-n { background: rgba(90,125,0,0.18); }
+  body.light .mode-i { background: rgba(217,83,30,0.18); }
+  body.light .mode-v { background: rgba(0,119,168,0.18); }
 
   table {
     width: 100%;
@@ -172,6 +197,21 @@
   .mode-i { background: rgba(255,107,53,0.15); color: var(--accent2); }
   .mode-v { background: rgba(0,212,255,0.15); color: var(--accent3); }
 
+  .theme-toggle {
+    margin-left: 16px;
+    background: var(--key-bg);
+    border: 1px solid var(--key-border);
+    border-radius: 4px;
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    cursor: pointer;
+    padding: 4px 10px;
+    line-height: 1;
+    transition: border-color 0.2s ease;
+  }
+  .theme-toggle:hover { border-color: var(--accent); }
+
   footer {
     margin-top: 24px;
     padding-top: 16px;
@@ -193,6 +233,7 @@
     <span class="mode-badge mode-i">I</span> Insert &nbsp;
     <span class="mode-badge mode-v">V</span> Visual
   </span>
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode">☾ Dark</button>
 </header>
 
 <div class="grid">
@@ -381,6 +422,27 @@
 </div>
 
 <footer>VIM — NO PLUGINS NEEDED &nbsp;·&nbsp; :help for anything &nbsp;·&nbsp; vimtutor to learn interactively</footer>
+
+<script>
+  (function () {
+    var body = document.body;
+    var btn = document.getElementById('themeToggle');
+
+    function apply(theme) {
+      var light = theme === 'light';
+      body.classList.toggle('light', light);
+      btn.textContent = light ? '☀ Light' : '☾ Dark';
+    }
+
+    apply(localStorage.getItem('vimCheatTheme') || 'dark');
+
+    btn.addEventListener('click', function () {
+      var next = body.classList.contains('light') ? 'dark' : 'light';
+      localStorage.setItem('vimCheatTheme', next);
+      apply(next);
+    });
+  })();
+</script>
 
 </body>
 </html>
