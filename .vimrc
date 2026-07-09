@@ -1,3 +1,48 @@
+"----------------------
+" new and simple config
+"----------------------
+set nocompatible
+
+" line numbers
+set number
+
+" tabs & indentation
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set autoindent
+set smartindent 
+set smarttab
+set softtabstop=2
+
+" search settings
+set ignorecase
+set smartcase
+
+" cursor line
+set cursorline
+
+" appearance
+" set termguicolors
+set background=light
+set signcolumn=yes
+
+" split windows
+set splitright
+set splitbelow
+
+" mouse
+set mouse=a
+
+" syntax highlight
+filetype plugin indent on
+syntax on
+
+
+" ----------
+" old config
+" ----------
+
 set number  
 set autoindent 
 set smartindent 
